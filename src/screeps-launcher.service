@@ -1,0 +1,14 @@
+[Unit]
+Description=Screeps Server (world)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/screeps
+ExecStart=/opt/screeps/screeps-launcher
+User=screeps
+Group=screeps
+
+[Install]
+WantedBy=multi-user.target
