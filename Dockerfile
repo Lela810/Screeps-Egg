@@ -1,33 +1,26 @@
-FROM screepers/screeps-launcher:v1.15.1
-
-WORKDIR /screeps
+FROM screepers/screeps-launcher:latest
 
 USER root
 
-RUN apt update && apt install -y gnupg software-properties-common redis sudo
-RUN curl -fsSL https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
-RUN add-apt-repository 'deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main'
-RUN apt update && apt install -y mongodb-org
-RUN mkdir -p /data/db /data/configdb && chown -R screeps:screeps /data/db /data/configdb
-RUN adduser -D -h /home/container container
-
-ADD https://raw.githubusercontent.com/Lela810/Screeps-Egg/main/src/config.yml /opt/screeps/config.yml
-
+RUN adduser --disabled-password --home /home/container container
 WORKDIR /home/container
-ADD https://raw.githubusercontent.com/Lela810/Screeps-Egg/main/src/entrypoint.sh /home/container/entrypoint.sh
 
-RUN chmod +x entrypoint.sh
+RUN apt update && apt install -y screen gnupg software-properties-common sudo ca-certificates openssl tar bash fontconfig
 
+COPY ./config.yml /home/container/config.yml
+COPY ./entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT [ "./entrypoint.sh" ]
-#WORKDIR /opt/screeps
+RUN chown -R container /home/container
 
+RUN chmod +x /entrypoint.sh
 
+USER container
+ENV  USER=container HOME=/home/container
 
+ENV STARTUP="/bin/bash"
 
-
-#ADD https://github.com/screepers/screeps-launcher/releases/download/v1.15.1/screeps-launcher_v1.15.1_linux_amd64 screeps-launcher
-#RUN chmod +x screeps-launcher
+ENTRYPOINT []
+CMD ["/bin/bash", "/entrypoint.sh"]
 
 
 

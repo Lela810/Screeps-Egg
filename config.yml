@@ -1,8 +1,7 @@
-steamKey:
+steamKey: 8F1AAF91A2EFD818C6A967E7565C183D
 mods:
   - screepsmod-auth
   - screepsmod-admin-utils
-  - screepsmod-mongo
 bots:
   simplebot: screepsbot-zeswarm
 serverConfig:

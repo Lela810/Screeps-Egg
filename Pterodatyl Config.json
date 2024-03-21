@@ -1,0 +1,8 @@
+{
+	"config.yml": {
+		"parser": "yaml",
+		"find": {
+			"steamKey": "1BD08983E09B14692A85AE5EB86C14A6"
+		}
+	}
+}
