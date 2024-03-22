@@ -171,7 +171,7 @@ const start = async () => {
 	});
 
 	screeps.start(options, process.stdout);
-	config.log('Screeps Server started');
+	console.log('Screeps Server started');
 	screeps.cli('localhost', 21026, rl);
 };
 
