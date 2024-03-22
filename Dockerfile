@@ -20,7 +20,6 @@ RUN chmod +x /entrypoint.sh
 USER container
 WORKDIR /home/container
 ENV  USER=container HOME=/home/container
-RUN npm i screeps
 
 ENV STARTUP="/bin/sh"
 
