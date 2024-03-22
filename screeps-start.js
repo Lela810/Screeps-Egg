@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const { execSync } = require('child_process');
-const readline = require('readline');
 
 const RootDir = process.env['SERVER_DIR'];
 if (!RootDir) {
@@ -164,15 +163,8 @@ const start = async () => {
 			options[optionsKey] = launcherOptions[configKey];
 		}
 	}
-	const rl = readline.createInterface({
-		input: process.stdin,
-		output: process.stdout,
-		prompt: '> ',
-	});
 
-	screeps.cli('localhost', 21026, rl);
-	console.log('Screeps Server started');
-	screeps.start(options, process.stdout);
+	await screeps.start(options, process.stdout);
 };
 
 start().catch((err) => {
