@@ -6,7 +6,5 @@ bots:
   simplebot: screepsbot-zeswarm
 serverConfig:
   welcomeText: |
-    <h1 style="text-align: center;">My Cool Server</h1>
-  constants:
-    TEST_CONSTANT: 123
-  tickRate: 1500
+    <h1 style="text-align: center;">LKlaus Hosting Server</h1>
+  tickRate: 1000
