@@ -60,9 +60,6 @@ USER container
 WORKDIR /home/container
 ENV  USER=container HOME=/home/container
 
-
-ENV STARTUP="/bin/sh"
-
 ENTRYPOINT []
 CMD ["/bin/sh", "/entrypoint.sh"]
 
