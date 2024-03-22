@@ -1,17 +1,12 @@
-FROM ghcr.io/parkervcp/yolks:nodejs_21
+FROM ghcr.io/parkervcp/yolks:debian
 
-USER root
-
-RUN adduser --disabled-password --home /home/container container
 WORKDIR /home/container
 
 RUN apt update && apt upgrade -y 
-RUN apt update && apt install -y screen gnupg software-properties-common sudo ca-certificates openssl tar bash fontconfig build-essential tcl git mongodb redis
+RUN apt update && apt install -y screen gnupg software-properties-common sudo ca-certificates openssl tar bash fontconfig build-essential tcl git mongodb redis nodejs
 
 COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
-
-RUN chown -R container /home/container
 
 RUN chmod +x /entrypoint.sh
 
