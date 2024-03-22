@@ -32,15 +32,15 @@ RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
 
 USER container
-COPY --from=screeps --chown=container:container /screeps /screeps/
+COPY --from=screeps --chown=container:container /screeps /home/container/
 
 # Init mods package
-RUN mkdir /screeps/mods && echo "{}" > /screeps/mods/package.json
+RUN mkdir /home/container/mods && echo "{}" > /home/container/mods/package.json
 
-COPY screeps-cli.js /screeps/bin/cli
-COPY screeps-start.js /screeps/bin/start
+COPY screeps-cli.js /home/container/bin/cli
+COPY screeps-start.js /home/container/bin/start
 
-ENV SERVER_DIR=/screeps NODE_ENV=production PATH="/screeps/bin:${PATH}"
+ENV SERVER_DIR=/home/container NODE_ENV=production PATH="/screeps/bin:${PATH}"
 
 HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
     CMD wget --no-verbose --tries=1 --spider http://localhost:21025/api/version || exit 1
@@ -49,12 +49,10 @@ HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
 COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
-RUN ln -s /home/container/config.yml /screeps/config.yml
-
 USER root
 RUN chmod +x /entrypoint.sh
-RUN chmod +x /screeps/bin/cli
-RUN chmod +x /screeps/bin/start
+RUN chmod +x /home/container/bin/cli
+RUN chmod +x /home/container/bin/start
 
 USER container
 WORKDIR /home/container
