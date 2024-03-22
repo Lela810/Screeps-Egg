@@ -27,20 +27,20 @@ FROM node:${NODE_VERSION}-alpine as server
 
 RUN adduser --disabled-password --home /home/container container
 
-WORKDIR /home/container
+
 # hadolint ignore=DL3018
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
 
-COPY --from=screeps --chown=container:container /screeps /home/container/
+COPY --from=screeps --chown=container:container /screeps /screeps/
 
 # Init mods package
 RUN mkdir ./mods && echo "{}" > ./mods/package.json
 
-COPY screeps-cli.js /home/container/bin/cli
-COPY screeps-start.js /home/container/bin/start
+COPY screeps-cli.js /screeps/bin/cli
+COPY screeps-start.js /screeps/bin/start
 
-ENV SERVER_DIR=/home/container NODE_ENV=production PATH="/home/container/bin:${PATH}"
+ENV SERVER_DIR=/screeps NODE_ENV=production PATH="/screeps/bin:${PATH}"
 
 HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
     CMD wget --no-verbose --tries=1 --spider http://localhost:21025/api/version || exit 1
@@ -49,12 +49,15 @@ HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
 COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
+RUN ln -s /home/container/config.yml /screeps/config.yml
+
 RUN chmod +x /entrypoint.sh
-RUN chmod +x /home/container/bin/cli
-RUN chmod +x /home/container/bin/start
-RUN chown -R container:container /home/container
+RUN chmod +x /screeps/bin/cli
+RUN chmod +x /screeps/bin/start
+RUN chown -R container:container /screeps
 
 USER container
+WORKDIR /home/container
 ENV  USER=container HOME=/home/container
 
 
