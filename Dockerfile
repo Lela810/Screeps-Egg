@@ -57,7 +57,7 @@ HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
 
 USER root
 
-COPY ./config.yml /home/container/config.yml
+COPY ./config.yml /screeps/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
