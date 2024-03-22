@@ -5,7 +5,7 @@ USER root
 WORKDIR /home/container
 
 RUN apt update && apt upgrade -y 
-RUN apt install -y curl
+RUN apt install -y curl npm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 RUN export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 RUN nvm install v8.17.0
