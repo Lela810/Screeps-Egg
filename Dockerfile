@@ -6,9 +6,8 @@ WORKDIR /home/container
 
 RUN apt update && apt upgrade -y 
 RUN apt install -y curl npm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-RUN export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-RUN nvm install v8.17.0
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+RUN apt install -y nodejs
 RUN apt update && apt install -y screen gnupg software-properties-common sudo ca-certificates openssl tar bash fontconfig build-essential tcl git redis-server python2
 
 
