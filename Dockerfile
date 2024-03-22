@@ -35,7 +35,7 @@ RUN --mount=type=cache,target=/var/cache/apk \
 COPY --from=screeps --chown=container:container /screeps /screeps/
 
 # Init mods package
-RUN mkdir ./mods && echo "{}" > ./mods/package.json
+RUN mkdir /screeps/mods && echo "{}" > /screeps/mods/package.json
 
 COPY screeps-cli.js /screeps/bin/cli
 COPY screeps-start.js /screeps/bin/start
