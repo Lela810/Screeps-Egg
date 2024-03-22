@@ -26,6 +26,8 @@ RUN sed -i "s/\r//" .screepsrc
 FROM node:${NODE_VERSION}-alpine as server
 
 RUN adduser --disabled-password --home /home/container container
+
+WORKDIR /home/container
 # hadolint ignore=DL3018
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
