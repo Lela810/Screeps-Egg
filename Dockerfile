@@ -61,6 +61,8 @@ COPY ./config.yml /screeps/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /screeps/bin/cli
+RUN chmod +x /screeps/bin/start
 
 ENV  USER=root HOME=/screeps
 
