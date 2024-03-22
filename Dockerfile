@@ -37,8 +37,8 @@ COPY --from=screeps --chown=node:node /home/container /home/container/
 # Init mods package
 RUN mkdir ./mods && echo "{}" > ./mods/package.json
 
-COPY screeps-cli.js ./bin/cli
-COPY screeps-start.js ./bin/start
+COPY screeps-cli.js /home/container/bin/cli
+COPY screeps-start.js /home/container/bin/start
 
 ENV SERVER_DIR=/home/container NODE_ENV=production PATH="/home/container/bin:${PATH}"
 
