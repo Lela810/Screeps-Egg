@@ -1,7 +1,7 @@
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine as screeps
 
-
+RUN adduser --disabled-password --home /home/container container
 # Install node-gyp dependencies
 # We do not pin as we use multiple node versions.
 # They are so old that there is no changes to their package registry anyway..
