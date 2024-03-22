@@ -50,7 +50,6 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /home/container/bin/cli
 RUN chmod +x /home/container/bin/start
-RUN chown -R container /home/container
 
 USER container
 ENV  USER=container HOME=/home/container
