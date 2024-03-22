@@ -16,6 +16,9 @@ RUN chmod +x /entrypoint.sh
 USER container
 ENV  USER=container HOME=/home/container
 
+RUN npm install screeps
+RUN npx screeps init
+
 ENV STARTUP="/bin/bash"
 
 ENTRYPOINT []
