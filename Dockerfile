@@ -54,7 +54,7 @@ RUN ln -s /home/container/config.yml /screeps/config.yml
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /screeps/bin/cli
 RUN chmod +x /screeps/bin/start
-RUN chown -R container:container /screeps
+RUN chmod 777 -R /screeps
 
 USER container
 WORKDIR /home/container
