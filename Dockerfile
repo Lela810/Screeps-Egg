@@ -61,10 +61,8 @@ COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
-RUN adduser --disabled-password --home /home/container container
 
-USER container
-ENV  USER=container HOME=/screeps
+ENV  USER=root HOME=/screeps
 
 
 ENV STARTUP="/bin/sh"
