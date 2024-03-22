@@ -1,11 +1,11 @@
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine as screeps
 
+USER root
 
 RUN apk add --no-cache --update curl ca-certificates openssl git tar bash sqlite fontconfig \
     && adduser --disabled-password --home /home/container container
-
-USER container
+RUN chmod 777 /home/container
 # Install node-gyp dependencies
 # We do not pin as we use multiple node versions.
 # They are so old that there is no changes to their package registry anyway..
