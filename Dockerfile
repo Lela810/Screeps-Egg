@@ -5,7 +5,7 @@ USER root
 
 RUN apk add --no-cache --update curl ca-certificates openssl git tar bash sqlite fontconfig \
     && adduser --disabled-password --home /home/container container
-RUN chmod 777 /home/container
+
 # Install node-gyp dependencies
 # We do not pin as we use multiple node versions.
 # They are so old that there is no changes to their package registry anyway..
@@ -32,7 +32,6 @@ FROM node:${NODE_VERSION}-alpine as server
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
 
-USER node
 COPY --from=screeps --chown=node:node /home/container /home/container/
 
 # Init mods package
@@ -47,12 +46,12 @@ HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
     CMD wget --no-verbose --tries=1 --spider http://localhost:21025/api/version || exit 1
 
 
-COPY ./config.yml /screeps/config.yml
+COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
-RUN chmod +x /screeps/bin/cli
-RUN chmod +x /screeps/bin/start
+RUN chmod +x /home/container/bin/cli
+RUN chmod +x /home/container/bin/start
 
 USER container
 ENV  USER=container HOME=/home/container
