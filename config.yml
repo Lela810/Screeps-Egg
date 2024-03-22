@@ -4,6 +4,8 @@ mods:
   - screepsmod-admin-utils
 bots:
   simplebot: screepsbot-zeswarm
+serverOptions:
+  logConsole: true
 serverConfig:
   welcomeText: |
     <h1 style="text-align: center;">LKlaus Hosting Server</h1>
