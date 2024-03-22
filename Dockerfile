@@ -1,5 +1,7 @@
 FROM ghcr.io/parkervcp/yolks:mongodb_7
 
+USER root
+
 WORKDIR /home/container
 
 RUN apt update && apt upgrade -y 
