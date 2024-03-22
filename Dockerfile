@@ -2,8 +2,6 @@ ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine as screeps
 
 
-RUN adduser --disabled-password --home /home/container container
-
 # Install node-gyp dependencies
 # We do not pin as we use multiple node versions.
 # They are so old that there is no changes to their package registry anyway..
@@ -26,6 +24,8 @@ RUN cp -a /home/container/node_modules/@screeps/launcher/init_dist/.screepsrc ./
 RUN sed -i "s/\r//" .screepsrc
 
 FROM node:${NODE_VERSION}-alpine as server
+
+RUN adduser --disabled-password --home /home/container container
 # hadolint ignore=DL3018
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
