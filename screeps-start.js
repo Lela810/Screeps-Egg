@@ -170,7 +170,7 @@ const start = async () => {
 		prompt: '> ',
 	});
 
-	await screeps.start(options, process.stdout);
+	screeps.start(options, process.stdout);
 	screeps.cli('localhost', 21026, rl);
 };
 
