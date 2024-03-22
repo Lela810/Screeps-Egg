@@ -1,7 +1,6 @@
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine as screeps
 
-USER root
 
 RUN adduser --disabled-password --home /home/container container
 
@@ -51,6 +50,7 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /home/container/bin/cli
 RUN chmod +x /home/container/bin/start
+RUN chown -R container /home/container
 
 USER container
 ENV  USER=container HOME=/home/container
