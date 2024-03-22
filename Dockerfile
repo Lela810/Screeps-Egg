@@ -1,9 +1,6 @@
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine as screeps
 
-USER root
-
-
 
 # Install node-gyp dependencies
 # We do not pin as we use multiple node versions.
@@ -58,13 +55,15 @@ HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
     CMD wget --no-verbose --tries=1 --spider http://localhost:21025/api/version || exit 1
 
 
+USER root
+
 COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
 USER container
-ENV  USER=container HOME=/home/container
+ENV  USER=container HOME=/screeps
 
 
 ENV STARTUP="/bin/bash"
