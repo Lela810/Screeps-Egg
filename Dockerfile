@@ -31,7 +31,7 @@ FROM node:${NODE_VERSION}-alpine as server
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
 
-COPY --from=screeps --chown=node:node /home/container /home/container/
+#COPY --from=screeps --chown=node:node /home/container /home/container/
 
 # Init mods package
 RUN mkdir ./mods && echo "{}" > ./mods/package.json
