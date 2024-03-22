@@ -10,15 +10,15 @@ RUN --mount=type=cache,target=/etc/apk/cache \
     apk add --no-cache bash python2 make gcc g++ curl ca-certificates openssl git tar bash sqlite fontconfig
 
 # Install screeps
-WORKDIR /home/container
+WORKDIR /screeps
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm \
     npm clean-install
 
 # Initialize screeps, similar to `screeps init`
-RUN cp -a /home/container/node_modules/@screeps/launcher/init_dist/.screepsrc ./ && \
-    cp -a /home/container/node_modules/@screeps/launcher/init_dist/db.json ./ && \
-    cp -a /home/container/node_modules/@screeps/launcher/init_dist/assets/ ./
+RUN cp -a /screeps/node_modules/@screeps/launcher/init_dist/.screepsrc ./ && \
+    cp -a /screeps/node_modules/@screeps/launcher/init_dist/db.json ./ && \
+    cp -a /screeps/node_modules/@screeps/launcher/init_dist/assets/ ./
 
 # Gotta remove this Windows carriage return shenanigans
 RUN sed -i "s/\r//" .screepsrc
@@ -30,7 +30,7 @@ RUN adduser --disabled-password --home /home/container container
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
 
-COPY --from=screeps --chown=container:container /home/container /home/container/
+COPY --from=screeps --chown=container:container /screeps /home/container/
 
 # Init mods package
 RUN mkdir ./mods && echo "{}" > ./mods/package.json
