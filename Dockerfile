@@ -1,7 +1,6 @@
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine as screeps
 
-RUN adduser --disabled-password --home /home/container container
 # Install node-gyp dependencies
 # We do not pin as we use multiple node versions.
 # They are so old that there is no changes to their package registry anyway..
@@ -32,9 +31,8 @@ RUN adduser --disabled-password --home /home/container container
 RUN --mount=type=cache,target=/var/cache/apk \
     apk add --no-cache git screen
 
-COPY --from=screeps --chown=container:container /screeps /screeps/
-RUN ln -s /home/container/config.yml /screeps/config.yml
 USER container
+COPY --from=screeps --chown=container:container /screeps /screeps/
 
 # Init mods package
 RUN mkdir /screeps/mods && echo "{}" > /screeps/mods/package.json
@@ -51,10 +49,14 @@ HEALTHCHECK --start-period=10s --interval=30s --timeout=3s \
 COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
+RUN ln -s /home/container/config.yml /screeps/config.yml
+
+USER root
 RUN chmod +x /entrypoint.sh
 RUN chmod +x /screeps/bin/cli
 RUN chmod +x /screeps/bin/start
 
+USER container
 WORKDIR /home/container
 ENV  USER=container HOME=/home/container
 
