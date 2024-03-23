@@ -1,20 +1,13 @@
 {
-  "name": "screeps-server",
-  "private": true,
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com-private:Jomik/screeps-server.git",
-  "author": "Jonas Holst Damtoft <jonasdamtoft@gmail.com>",
-  "license": "MIT",
-  "engines": {
-    "npm": "~6",
-    "node": "10 - 12"
-  },
-  "dependencies": {
-    "screeps": "4.2.19",
-    "js-yaml": "4.1.0"
-  },
-  "scripts": {
-    "cli": "docker compose exec screeps cli"
-  }
+	"name": "screeps-server",
+	"private": true,
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com-private:Jomik/screeps-server.git",
+	"author": "Jonas Holst Damtoft <jonasdamtoft@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"screeps": "4.2.19",
+		"js-yaml": "4.1.0"
+	}
 }
