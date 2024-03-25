@@ -1,7 +1,11 @@
 FROM screepers/screeps-launcher
 
 USER root
-RUN adduser --disabled-password --home /home/container container
+ENV          DEBIAN_FRONTEND noninteractive
+
+RUN          useradd -m -d /home/container -s /bin/bash container
+
+RUN          ln -s /home/container/ /nonexistent
 USER container
 
 COPY ./entrypoint.sh /entrypoint.sh
