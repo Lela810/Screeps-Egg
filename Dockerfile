@@ -5,7 +5,7 @@ ENV          DEBIAN_FRONTEND noninteractive
 
 RUN          useradd -m -u 998 -d /home/container -s /bin/bash container
 
-RUN apt update && apt install -y nodejs npm
+RUN apt update && apt install -y nodejs npm nano
 
 USER container
 
