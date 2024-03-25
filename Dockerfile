@@ -6,7 +6,7 @@ USER container
 
 COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
-RUN cp -R /screeps /home/container
+#RUN cp -R /screeps /home/container
 
 USER root
 RUN chmod +x /entrypoint.sh
