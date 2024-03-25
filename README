@@ -1,6 +1,6 @@
 # Screeps-Egg
 
-[![Build Status](https://img.shields.io/travis/lela810/Screeps-Egg/master.svg?style=flat-square)](https://travis-ci.org/lela810/Screeps-Egg)
+[![Docker](https://github.com/Lela810/Screeps-Egg/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Lela810/Screeps-Egg/actions/workflows/docker-publish.yml)
 [![License](https://img.shields.io/github/license/lela810/Screeps-Egg.svg?style=flat-square)](https://github.com/lela810/Screeps-Egg/blob/master/LICENSE)
 
 This repository contains the source code for the Screeps-Egg project.
