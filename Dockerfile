@@ -2,9 +2,9 @@ FROM screepers/screeps-launcher
 
 USER root
 RUN useradd -m -d /home/container -s /bin/bash container
-RUN apt update && apt install -y screen
 USER container
 
+COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
 USER root
