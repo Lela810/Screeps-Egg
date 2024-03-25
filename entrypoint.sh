@@ -5,7 +5,5 @@ cd /home/container
 INTERNAL_IP=$(ip route get 1 | awk '{print $(NF-2);exit}')
 export INTERNAL_IP
 
-echo ":/home/container$ ${STARTUP} "
-
 # Run the Server
 eval ${STARTUP} 
