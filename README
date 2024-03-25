@@ -1,7 +1,7 @@
 # Screeps-Egg
 
-[![Build Status](https://img.shields.io/travis/your-username/Screeps-Egg/master.svg?style=flat-square)](https://travis-ci.org/your-username/Screeps-Egg)
-[![License](https://img.shields.io/github/license/your-username/Screeps-Egg.svg?style=flat-square)](https://github.com/your-username/Screeps-Egg/blob/master/LICENSE)
+[![Build Status](https://img.shields.io/travis/lela810/Screeps-Egg/master.svg?style=flat-square)](https://travis-ci.org/lela810/Screeps-Egg)
+[![License](https://img.shields.io/github/license/lela810/Screeps-Egg.svg?style=flat-square)](https://github.com/lela810/Screeps-Egg/blob/master/LICENSE)
 
 This repository contains the source code for the Screeps-Egg project.
 
@@ -21,7 +21,7 @@ Screeps-Egg is a project aimed at creating an AI-driven bot for the game Screeps
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/Screeps-Egg.git
+   git clone https://github.com/lela810/Screeps-Egg.git
    ```
 
 2. Install the dependencies:
