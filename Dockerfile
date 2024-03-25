@@ -5,7 +5,6 @@ ENV          DEBIAN_FRONTEND noninteractive
 
 RUN          useradd -m -u 998 -d /home/container -s /bin/bash container
 
-RUN          ln -s /home/container/ /nonexistent
 USER container
 
 STOPSIGNAL SIGINT
