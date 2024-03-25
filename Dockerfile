@@ -2,6 +2,7 @@ FROM screepers/screeps-launcher
 
 USER root
 RUN useradd -m -d /home/container -s /bin/bash container
+RUN apt update
 USER container
 
 COPY ./entrypoint.sh /entrypoint.sh
