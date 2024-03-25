@@ -1,5 +1,10 @@
 FROM screepers/screeps-launcher
 
+LABEL       author="Leandro Klaus" maintainer="info@lklaus.ch"
+
+LABEL       org.opencontainers.image.source="https://github.com/Lela810/Screeps-Egg"
+LABEL       org.opencontainers.image.licenses=MIT
+
 USER root
 ENV DEBIAN_FRONTEND noninteractive
 
