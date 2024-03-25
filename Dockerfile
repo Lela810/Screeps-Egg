@@ -2,12 +2,9 @@ FROM screepers/screeps-launcher
 
 USER root
 RUN useradd -m -d /home/container -s /bin/bash container
-USER container
 
-COPY ./config.yml /home/container/config.yml
 COPY ./entrypoint.sh /entrypoint.sh
 
-USER root
 RUN chmod +x /entrypoint.sh
 
 USER container
