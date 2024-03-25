@@ -33,22 +33,22 @@ EOF
 echo "Creating init.sh"
 cat > init.sh << EOF
 
-if [ -f .screepsrc ]; then
-   echo "Mods Screeps server"
-else
-   echo "Installing Screeps server"
-   npm --silent i screeps
+if [ ! -f .screepsrc ]; then
+
+echo "Installing Screeps server"
+npm --silent i screeps
 
 echo "Initializing Screeps server"
 cp -a ./node_modules/@screeps/launcher/init_dist/.screepsrc ./
 cp -a ./node_modules/@screeps/launcher/init_dist/db.json ./
 cp -a ./node_modules/@screeps/launcher/init_dist/assets/ ./
-fi
-
 
 echo "Adjusting configuration"
 sed -i "s/{{STEAM_KEY}}/\$STEAM_KEY/g" .screepsrc
 sed -i "s/21025/\$SERVER_PORT/g" .screepsrc
+
+fi
+
 
 # Extract and install screepsmod modules
 cat mods.json | grep -o 'screepsmod-[^/]*' | while read -r mod; do
