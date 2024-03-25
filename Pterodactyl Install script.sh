@@ -49,7 +49,6 @@ sed -i "s/21025/\$SERVER_PORT/g" .screepsrc
 
 fi
 
-
 # Extract and install screepsmod modules
 cat mods.json | grep -o 'screepsmod-[^/]*' | while read -r mod; do
     echo "Installing \$mod"
