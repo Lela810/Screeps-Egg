@@ -1,0 +1,35 @@
+# Screeps-Egg
+
+[![Build Status](https://img.shields.io/travis/your-username/Screeps-Egg/master.svg?style=flat-square)](https://travis-ci.org/your-username/Screeps-Egg)
+[![License](https://img.shields.io/github/license/your-username/Screeps-Egg.svg?style=flat-square)](https://github.com/your-username/Screeps-Egg/blob/master/LICENSE)
+
+This repository contains the source code for the Screeps-Egg project.
+
+## Description
+
+Screeps-Egg is a project aimed at creating an AI-driven bot for the game Screeps. The bot utilizes various algorithms and strategies to optimize resource management, base building, and combat.
+
+## Features
+
+- Resource management
+- Base building
+- Combat strategies
+- AI-driven decision making
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/Screeps-Egg.git
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+To run the bot, use the following command:
