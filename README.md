@@ -19,7 +19,7 @@ Screeps-Egg is a project aimed at creating an AI-driven bot for the game Screeps
 
 1. Import the egg-screeps.json into a Pterodactyl Nest of your choice
 
-2. In the tab "Variables", set a new default value for your Steam API Key(get it at your[Steam Dev Page](https://steamcommunity.com/dev/apikey))
+2. In the tab "Variables", set a new default value for your Steam API Key (get it at your [Steam Dev Page](https://steamcommunity.com/dev/apikey))
 
 ## Usage
 
