@@ -1,0 +1,52 @@
+{
+	"_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+	"meta": {
+		"version": "PTDL_v2",
+		"update_url": null
+	},
+	"exported_at": "2024-03-26T03:19:04+01:00",
+	"name": "Screeps",
+	"author": "info@lklaus.ch",
+	"description": "A dedicated server for the game Screeps.",
+	"features": null,
+	"docker_images": {
+		"Screeps-Egg": "ghcr.io/lela810/screeps-egg"
+	},
+	"file_denylist": [],
+	"startup": "./init.sh && screen -d -m npx screeps start --port ${SERVER_PORT} --steam_api_key ${STEAM_KEY} --cli_port $((SERVER_PORT + 1)) && sleep 5 && npx screeps cli --port $((SERVER_PORT + 1))",
+	"config": {
+		"files": "{}",
+		"startup": "{\r\n    \"done\": \"running on port\"\r\n}",
+		"logs": "{}",
+		"stop": "^C^C^C^C"
+	},
+	"scripts": {
+		"installation": {
+			"script": "chown -R root:root /mnt\r\ncd /mnt/server\r\n\r\necho \"Creating config.yml\"\r\ncat > config.yml << EOF\r\nmods:\r\n  - screepsmod-auth\r\n  - screepsmod-admin-utils\r\nbots:\r\n  simplebot: screepsbot-zeswarm\r\nserverOptions:\r\n  logConsole: true\r\nserverConfig:\r\n  welcomeText: |\r\n    <h1 style=\"text-align: center;\">LKlaus Hosting Server</h1>\r\n  tickRate: 1000\r\nEOF\r\n\r\necho \"Creating mods.json\"\r\ncat > mods.json << EOF\r\n{\r\n  \"mods\": [\r\n    \"node_modules/screepsmod-auth/index.js\",\r\n    \"node_modules/screepsmod-admin-utils/index.js\"\r\n  ],\r\n  \"bots\": {\r\n    \"simplebot\": \"node_modules/screepsbot-zeswarm/src\"\r\n  }\r\n}\r\nEOF\r\n\r\necho \"Creating init.sh\"\r\ncat > init.sh << EOF\r\n\r\nif [ ! -f .screepsrc ]; then\r\n\r\necho \"Installing Screeps server\"\r\nnpm --silent i screeps\r\n\r\necho \"Initializing Screeps server\"\r\ncp -a ./node_modules/@screeps/launcher/init_dist/.screepsrc ./\r\ncp -a ./node_modules/@screeps/launcher/init_dist/db.json ./\r\ncp -a ./node_modules/@screeps/launcher/init_dist/assets/ ./\r\n\r\nfi\r\n\r\n# Extract and install screepsmod modules\r\ncat mods.json | grep -o 'screepsmod-[^/]*' | while read -r mod; do\r\n    if [ ! -d \"./node_modules/\\$mod\" ]; then\r\n        echo \"Installing \\$mod\"\r\n        npm --silent install \"\\$mod\"\r\n    fi\r\ndone\r\n\r\n# Extract and install screepsbot modules\r\ncat mods.json | grep -o 'screepsbot-[^/]*' | while read -r bot; do\r\n    if [ ! -d \"./node_modules/\\$bot\" ]; then\r\n        echo \"Installing \\$bot\"\r\n        npm --silent install \"\\$bot\"\r\n    fi\r\ndone\r\nEOF\r\n\r\necho \"Adjusting permissions\"\r\nchmod +x init.sh\r\nmkdir /mnt/server/.screen && chmod 700 /mnt/server/.screen",
+			"container": "ghcr.io/parkervcp/installers:debian",
+			"entrypoint": "/bin/bash"
+		}
+	},
+	"variables": [
+		{
+			"name": "Steam API Key",
+			"description": "Set your own Steam API Key. Will not be visible to the end user but is required.",
+			"env_variable": "STEAM_KEY",
+			"default_value": "00000000000000000000000000000000",
+			"user_viewable": false,
+			"user_editable": false,
+			"rules": "required|string|max:32|min:32",
+			"field_type": "text"
+		},
+		{
+			"name": "Screendir",
+			"description": "",
+			"env_variable": "SCREENDIR",
+			"default_value": "/home/container/.screen",
+			"user_viewable": false,
+			"user_editable": false,
+			"rules": "string",
+			"field_type": "text"
+		}
+	]
+}
